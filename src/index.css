@@ -1,13 +1,41 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0a090d;
+  --deep: #111018;
+  --panel: #18161f;
+  --card: #1e1b28;
+  --border: rgba(255,255,255,0.07);
+  --gold: #c9a84c;
+  --gold2: #e8cb80;
+  --rose: #d4607a;
+  --cream: #f5ede0;
+  --muted: #8a849a;
+  --white: #ffffff;
+  --green: #5bb580;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  overflow-x: hidden;
 }
+
+a { text-decoration: none; color: inherit; }
+button { font-family: 'Outfit', sans-serif; cursor: pointer; }
+input, textarea { font-family: 'Outfit', sans-serif; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--deep); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+/* UTILS */
+.gold { color: var(--gold); }
+.rose { color: var(--rose); }
+.muted { color: var(--muted); }
