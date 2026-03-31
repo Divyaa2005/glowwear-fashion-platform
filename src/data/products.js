@@ -294,24 +294,6 @@ const products = [
     reviews: 389,
   },
 
-  // ═══════════════════════════════════════════════
-  // NAYA ITEM ADD KARNA HO TOH YAHAN COPY KARO:
-  // {
-  //   id: 21,                     ← agle number se shuru karo
-  //   emoji: '👗',                ← emoji choose karo
-  //   name: 'Item ka naam',
-  //   type: 'Casual Wear',
-  //   category: 'dresses',        ← SIRF in mein se ek: dresses / shoes / makeup / bags / jewellery / ethnic / tops
-  //   price: 499,                 ← sale price
-  //   oldPrice: 999,              ← original price (hamesha price se BADA hona chahiye!)
-  //   source: 'Myntra',           ← Myntra / Flipkart / Meesho / Ajio
-  //   link: 'https://...',
-  //   image: '',
-  //   stars: 4,                   ← sirf 1 se 5 tak (3.5 bhi chalega)
-  //   reviews: 100,
-  // },
-  // ═══════════════════════════════════════════════
-
 ];
 
 export default products;
