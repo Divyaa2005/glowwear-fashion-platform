@@ -8,8 +8,8 @@ const products = [
     category: 'dresses',
     price: 291,
     source: 'Myntra',
-    link: 'https://www.myntra.com/dresses/milost/printed-white-wrap--dress/37229458/buy',  // ← yahan real link daalo
-    image: '',   // ← image URL daalo ya empty rakho
+    link: 'https://www.myntra.com/dresses/milost/printed-white-wrap--dress/37229458/buy',  
+    image: '',  
     stars: 3.6,
     reviews: 36,
   },
@@ -54,7 +54,7 @@ const products = [
   },
 
   {
-    id: 4,
+    id: 5,
     emoji: '👗',
     name: 'Women Floral Printed Floral Kurta',
     type: 'Casual Wear',
@@ -71,7 +71,7 @@ const products = [
 
   // ───── SHOES ─────
   {
-    id: 5,
+    id: 6,
     emoji: '👠',
     name: 'Block Heel Party Sandals',
     type: 'Heels',
@@ -84,7 +84,7 @@ const products = [
     reviews: 203,
   },
   {
-    id: 6,
+    id: 7,
     emoji: '🥿',
     name: 'Pointed Ballet Flats',
     type: 'Flats',
@@ -97,7 +97,7 @@ const products = [
     reviews: 341,
   },
   {
-    id: 7,
+    id: 8,
     emoji: '👟',
     name: 'Pastel Canvas Sneakers',
     type: 'Sneakers',
@@ -112,20 +112,20 @@ const products = [
 
   // ───── MAKEUP ─────
   {
-    id: 8,
+    id: 9,
     emoji: '💄',
-    name: 'Matte Red Lipstick',
+    name: 'Creamy Matte Ultra Pigmented Long Lasting Bullet Lipstick',
     type: 'Lips',
     category: 'makeup',
     price: 149,
     source: 'Myntra',
-    link: 'https://www.myntra.com/makeup',
+    link: 'https://www.myntra.com/lipstick/mars/mars-creamy-matte-ultra-pigmented-long-lasting-bullet-lipstick---bollywood-surprise-09/23393626/buy',
     image: '',
-    stars: 5,
-    reviews: 892,
+    stars: 4.4,
+    reviews: 42.1,
   },
   {
-    id: 9,
+    id: 10,
     emoji: '🖌️',
     name: 'Kajal & Eyeliner Combo',
     type: 'Eyes',
@@ -138,7 +138,7 @@ const products = [
     reviews: 1204,
   },
   {
-    id: 10,
+    id: 11,
     emoji: '✨',
     name: 'BB Cream SPF 30',
     type: 'Face',
@@ -153,7 +153,7 @@ const products = [
 
   // ───── BAGS ─────
   {
-    id: 11,
+    id: 12,
     emoji: '👜',
     name: 'Structured Tote Bag',
     type: 'Tote',
@@ -166,7 +166,7 @@ const products = [
     reviews: 188,
   },
   {
-    id: 12,
+    id: 13,
     emoji: '👛',
     name: 'Beaded Clutch Purse',
     type: 'Clutch',
@@ -181,20 +181,20 @@ const products = [
 
   // ───── JEWELLERY ─────
   {
-    id: 13,
+    id: 15,
     emoji: '💍',
-    name: 'Oxidised Jhumka Earrings',
+    name: 'Maroon & Off-White Drop Earrings',
     type: 'Earrings',
     category: 'jewellery',
     price: 99,
     source: 'Myntra',
-    link: 'https://www.myntra.com',
+    link: 'https://www.myntra.com/earrings/zaveri+pearls/zaveri-pearls-maroon--off-white-drop-earrings/625852/buy',
     image: '',
     stars: 5,
     reviews: 723,
   },
   {
-    id: 14,
+    id: 16,
     emoji: '📿',
     name: 'Pearl Layered Necklace',
     type: 'Necklace',
@@ -209,48 +209,48 @@ const products = [
 
   // ───── ETHNIC ─────
   {
-    id: 15,
+    id: 17,
     emoji: '🥻',
-    name: 'Georgette Printed Saree',
+    name: 'Ethnic Motifs Georgette Printed Saree',
     type: 'Saree',
     category: 'ethnic',
-    price: 599,
+    price: 452,
     source: 'Myntra',
-    link: 'https://www.myntra.com',
+    link: 'https://www.myntra.com/sarees/priyashi/priyashi-ethnic-motifs-georgette-printed--saree/40279579/buy',
     image: '',
     stars: 5,
     reviews: 456,
   },
   {
-    id: 16,
+    id: 18,
     emoji: '🩱',
     name: 'Anarkali Salwar Suit',
     type: 'Salwar',
     category: 'ethnic',
-    price: 799,
-    source: 'Ajio',
-    link: 'https://www.ajio.com',
+    price: 807,
+    source: 'Myntra',
+    link: 'https://www.myntra.com/kurta-sets/moda+rapido/moda-rapido-women-embroidered-regular-kurti-set/36874707/buy',
     image: '',
-    stars: 4,
+    stars: 3.8,
     reviews: 234,
   },
 
   // ───── TOPS ─────
   {
-    id: 17,
+    id: 19,
     emoji: '👚',
-    name: 'Embroidered Kurti',
-    type: 'Ethnic-Fusion',
+    name: 'Square Neck Fitted Crop Top',
+    type: 'Crop top',
     category: 'tops',
-    price: 299,
+    price: 293,
     source: 'Myntra',
-    link: 'https://www.myntra.com',
+    link: 'https://www.myntra.com/tops/glitchez/glitchez-square-neck-fitted-crop-top/32548296/buy',
     image: '',
-    stars: 5,
-    reviews: 678,
+    stars: 402,
+    reviews: 369,
   },
   {
-    id: 18,
+    id: 20,
     emoji: '👕',
     name: 'Floral Crop Top',
     type: 'Western',
@@ -264,7 +264,7 @@ const products = [
   },
   
   {
-    id: 19,
+    id: 21,
     emoji: '👕',
     name: 'Printed Kurta',
     type: 'Ethenic',
