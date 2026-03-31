@@ -1,4 +1,5 @@
 const products = [
+
   // ───── DRESSES ─────
   {
     id: 1,
@@ -7,10 +8,11 @@ const products = [
     type: 'Casual Wear',
     category: 'dresses',
     price: 291,
+    oldPrice: 599,
     source: 'Myntra',
-    link: 'https://www.myntra.com/dresses/milost/printed-white-wrap--dress/37229458/buy',  
-    image: '',  
-    stars: 3.6,
+    link: 'https://www.myntra.com/dresses/milost/printed-white-wrap--dress/37229458/buy',
+    image: '',
+    stars: 4,
     reviews: 36,
   },
   {
@@ -20,19 +22,21 @@ const products = [
     type: 'Party Wear',
     category: 'dresses',
     price: 292,
+    oldPrice: 599,
     source: 'Myntra',
     link: 'https://www.myntra.com/dresses/seetoo/seetoo-women-solid-bodycon-dress/34737047/buy',
     image: '',
-    stars: 3.1,
+    stars: 3,
     reviews: 17,
   },
   {
     id: 3,
     emoji: '👗',
-    name: 'Women Floral Embroidered Thread Work Floral Kurta',
-    type: 'Formal Wear',
+    name: 'Women Floral Embroidered Thread Work Kurta',
+    type: 'Casual Wear',
     category: 'dresses',
     price: 499,
+    oldPrice: 999,
     source: 'Myntra',
     link: 'https://www.myntra.com/kurtas/physil/physil-women-floral-embroidered-thread-work-floral-kurta/39245999/buy',
     image: '',
@@ -46,28 +50,27 @@ const products = [
     type: 'Casual Wear',
     category: 'dresses',
     price: 283,
+    oldPrice: 599,
     source: 'Flipkart',
-    link: 'https://www.flipkart.com/obshivka-women-fit-flare-light-green-above-knee-mid-thigh-length-dress/p/itm53c195967ed61?pid=DREHJGYU6H49ZBFU&lid=LSTDREHJGYU6H49ZBFUBVCRPN&marketplace=FLIPKART&q=Printed+Cotton+Sundress&store=clo&srno=s_1_5&otracker=search&otracker1=search&fm=Search&iid=60691e06-57b7-459a-b867-4177963ad8b1.DREHJGYU6H49ZBFU.SEARCH&ppt=sp&ppn=sp&ssid=fn5a10ovts0000001774601411566&qH=cdff94c174d0cfa6&ov_redirect=true',
+    link: 'https://www.flipkart.com/obshivka-women-fit-flare-light-green-above-knee-mid-thigh-length-dress/p/itm53c195967ed61',
     image: '',
     stars: 2,
     reviews: 45,
   },
-
   {
     id: 5,
     emoji: '👗',
-    name: 'Women Floral Printed Floral Kurta',
+    name: 'Women Floral Printed Kurta',
     type: 'Casual Wear',
     category: 'dresses',
     price: 376,
+    oldPrice: 799,
     source: 'Myntra',
     link: 'https://www.myntra.com/kurtas/kjfab/kjfab-women-floral-printed-floral-kurta/40628043/buy',
     image: '',
     stars: 4,
     reviews: 489,
   },
-
-  
 
   // ───── SHOES ─────
   {
@@ -77,6 +80,7 @@ const products = [
     type: 'Heels',
     category: 'shoes',
     price: 599,
+    oldPrice: 1299,
     source: 'Myntra',
     link: 'https://www.myntra.com/shoes',
     image: '',
@@ -90,6 +94,7 @@ const products = [
     type: 'Flats',
     category: 'shoes',
     price: 399,
+    oldPrice: 899,
     source: 'Flipkart',
     link: 'https://www.flipkart.com',
     image: '',
@@ -103,6 +108,7 @@ const products = [
     type: 'Sneakers',
     category: 'shoes',
     price: 499,
+    oldPrice: 999,
     source: 'Myntra',
     link: 'https://www.myntra.com',
     image: '',
@@ -114,15 +120,16 @@ const products = [
   {
     id: 9,
     emoji: '💄',
-    name: 'Creamy Matte Ultra Pigmented Long Lasting Bullet Lipstick',
+    name: 'Creamy Matte Ultra Pigmented Bullet Lipstick',
     type: 'Lips',
     category: 'makeup',
     price: 149,
+    oldPrice: 299,
     source: 'Myntra',
     link: 'https://www.myntra.com/lipstick/mars/mars-creamy-matte-ultra-pigmented-long-lasting-bullet-lipstick---bollywood-surprise-09/23393626/buy',
     image: '',
-    stars: 4.4,
-    reviews: 42.1,
+    stars: 4,
+    reviews: 421,
   },
   {
     id: 10,
@@ -131,6 +138,7 @@ const products = [
     type: 'Eyes',
     category: 'makeup',
     price: 99,
+    oldPrice: 199,
     source: 'Flipkart',
     link: 'https://www.flipkart.com',
     image: '',
@@ -144,6 +152,7 @@ const products = [
     type: 'Face',
     category: 'makeup',
     price: 249,
+    oldPrice: 499,
     source: 'Myntra',
     link: 'https://www.myntra.com',
     image: '',
@@ -159,6 +168,7 @@ const products = [
     type: 'Tote',
     category: 'bags',
     price: 499,
+    oldPrice: 1299,
     source: 'Flipkart',
     link: 'https://www.flipkart.com',
     image: '',
@@ -172,6 +182,7 @@ const products = [
     type: 'Clutch',
     category: 'bags',
     price: 299,
+    oldPrice: 799,
     source: 'Myntra',
     link: 'https://www.myntra.com',
     image: '',
@@ -181,12 +192,13 @@ const products = [
 
   // ───── JEWELLERY ─────
   {
-    id: 15,
+    id: 14,
     emoji: '💍',
     name: 'Maroon & Off-White Drop Earrings',
     type: 'Earrings',
     category: 'jewellery',
     price: 99,
+    oldPrice: 249,
     source: 'Myntra',
     link: 'https://www.myntra.com/earrings/zaveri+pearls/zaveri-pearls-maroon--off-white-drop-earrings/625852/buy',
     image: '',
@@ -194,12 +206,13 @@ const products = [
     reviews: 723,
   },
   {
-    id: 16,
+    id: 15,
     emoji: '📿',
     name: 'Pearl Layered Necklace',
     type: 'Necklace',
     category: 'jewellery',
     price: 149,
+    oldPrice: 399,
     source: 'Flipkart',
     link: 'https://www.flipkart.com',
     image: '',
@@ -209,12 +222,13 @@ const products = [
 
   // ───── ETHNIC ─────
   {
-    id: 17,
+    id: 16,
     emoji: '🥻',
     name: 'Ethnic Motifs Georgette Printed Saree',
     type: 'Saree',
     category: 'ethnic',
     price: 452,
+    oldPrice: 999,
     source: 'Myntra',
     link: 'https://www.myntra.com/sarees/priyashi/priyashi-ethnic-motifs-georgette-printed--saree/40279579/buy',
     image: '',
@@ -222,17 +236,32 @@ const products = [
     reviews: 456,
   },
   {
-    id: 18,
+    id: 17,
     emoji: '🩱',
     name: 'Anarkali Salwar Suit',
     type: 'Salwar',
     category: 'ethnic',
     price: 807,
+    oldPrice: 1599,
     source: 'Myntra',
     link: 'https://www.myntra.com/kurta-sets/moda+rapido/moda-rapido-women-embroidered-regular-kurti-set/36874707/buy',
     image: '',
-    stars: 3.8,
+    stars: 4,
     reviews: 234,
+  },
+  {
+    id: 18,
+    emoji: '👕',
+    name: 'Printed Kurta',
+    type: 'Ethnic',
+    category: 'ethnic',
+    price: 421,
+    oldPrice: 899,
+    source: 'Myntra',
+    link: 'https://www.myntra.com/kurtas/znx+clothing/znx-clothing-women-brown-ethnic-motifs-printed-kurta/18217180/buy',
+    image: '',
+    stars: 4,
+    reviews: 389,
   },
 
   // ───── TOPS ─────
@@ -240,13 +269,14 @@ const products = [
     id: 19,
     emoji: '👚',
     name: 'Square Neck Fitted Crop Top',
-    type: 'Crop top',
+    type: 'Crop Top',
     category: 'tops',
     price: 293,
+    oldPrice: 599,
     source: 'Myntra',
     link: 'https://www.myntra.com/tops/glitchez/glitchez-square-neck-fitted-crop-top/32548296/buy',
     image: '',
-    stars: 402,
+    stars: 4,
     reviews: 369,
   },
   {
@@ -256,26 +286,32 @@ const products = [
     type: 'Western',
     category: 'tops',
     price: 199,
+    oldPrice: 449,
     source: 'Meesho',
     link: 'https://www.meesho.com',
     image: '',
     stars: 4,
     reviews: 389,
   },
-  
-  {
-    id: 21,
-    emoji: '👕',
-    name: 'Printed Kurta',
-    type: 'Ethenic',
-    category: 'Kurta',
-    price: 421,
-    source: 'Myntra',
-    link: 'https://www.myntra.com/kurtas/znx+clothing/znx-clothing-women-brown-ethnic-motifs-printed-kurta/18217180/buy',
-    image: '',
-    stars: 4,
-    reviews: 389,
-  },
+
+  // ═══════════════════════════════════════════════
+  // NAYA ITEM ADD KARNA HO TOH YAHAN COPY KARO:
+  // {
+  //   id: 21,                     ← agle number se shuru karo
+  //   emoji: '👗',                ← emoji choose karo
+  //   name: 'Item ka naam',
+  //   type: 'Casual Wear',
+  //   category: 'dresses',        ← SIRF in mein se ek: dresses / shoes / makeup / bags / jewellery / ethnic / tops
+  //   price: 499,                 ← sale price
+  //   oldPrice: 999,              ← original price (hamesha price se BADA hona chahiye!)
+  //   source: 'Myntra',           ← Myntra / Flipkart / Meesho / Ajio
+  //   link: 'https://...',
+  //   image: '',
+  //   stars: 4,                   ← sirf 1 se 5 tak (3.5 bhi chalega)
+  //   reviews: 100,
+  // },
+  // ═══════════════════════════════════════════════
+
 ];
 
 export default products;

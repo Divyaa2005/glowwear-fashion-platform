@@ -4,8 +4,13 @@ import { useAuth } from '../context/AuthContext';
 const ProductCard = ({ product }) => {
   const { user, toggleWishlist, isWishlisted } = useAuth();
   const wishlisted = isWishlisted(product.id);
-  const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
-  const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+  const discount = product.oldPrice && product.oldPrice > product.price
+  ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
+  : 0;
+  const stars = (n) => {
+  const count = Math.min(Math.max(parseInt(n) || 0, 0), 5);
+  return '★'.repeat(count) + '☆'.repeat(5 - count);
+};
 
   return (
     <div style={styles.card}>
