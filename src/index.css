@@ -40,6 +40,22 @@ input, textarea { font-family: 'Outfit', sans-serif; }
 .rose { color: var(--rose); }
 .muted { color: var(--muted); }
 
-nav div::-webkit-scrollbar {
+.nav-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  padding-bottom: 0.6rem;
+  touch-action: pan-x;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.nav-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.nav-scroll a {
+  flex-shrink: 0;
 }
