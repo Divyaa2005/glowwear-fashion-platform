@@ -39,3 +39,7 @@ input, textarea { font-family: 'Outfit', sans-serif; }
 .gold { color: var(--gold); }
 .rose { color: var(--rose); }
 .muted { color: var(--muted); }
+
+nav div::-webkit-scrollbar {
+  display: none;
+}
