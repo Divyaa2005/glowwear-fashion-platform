@@ -13,6 +13,55 @@ const categories = [
   { id: 'tops', emoji: '👚', label: 'Tops', sub: 'Kurtis · Crop Tops · Western' },
 ];
 
+const stores = [
+  { name: 'Myntra', url: 'https://www.myntra.com', bg: '#FF3F6C', logo: 'https://constant.myntassets.com/web/assets/img/icon_myntra.png' },
+  { name: 'Flipkart', url: 'https://www.flipkart.com', bg: '#2874F0', logo: 'https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkl_icon-eeab9.png' },
+  { name: 'Amazon', url: 'https://www.amazon.in/s?k=women+fashion', bg: '#FF9900', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg' },
+  { name: 'Ajio', url: 'https://www.ajio.com', bg: '#DB1F26', logo: 'https://assets.ajio.com/static/img/Ajio_Logo.svg' },
+  { name: 'Meesho', url: 'https://www.meesho.com', bg: '#F43397', logo: 'https://images.meesho.com/images/marketing/1563353555.jpg' },
+  { name: 'Nykaa', url: 'https://www.nykaafashion.com', bg: '#FC2779', logo: 'https://adn-static1.nykaa.com/nykdesignstudio-images/pub/media/favicons/nykaa-favicon.png' },
+];
+
+const StoreIcon = ({ store, size = 52 }) => (
+  <a
+    href={store.url}
+    target="_blank"
+    rel="noreferrer"
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '0.4rem',
+      textDecoration: 'none',
+    }}
+  >
+    <div style={{
+      width: size + 'px',
+      height: size + 'px',
+      borderRadius: '14px',
+      background: store.bg,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+    }}>
+      <img
+        src={store.logo}
+        alt={store.name}
+        style={{ width: (size - 16) + 'px', height: (size - 16) + 'px', objectFit: 'contain' }}
+        onError={e => {
+          e.target.style.display = 'none';
+          e.target.parentNode.innerHTML = `<span style="color:white;font-size:0.6rem;font-weight:700;text-align:center;padding:2px">${store.name}</span>`;
+        }}
+      />
+    </div>
+    <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.65rem', fontWeight: 500 }}>
+      {store.name}
+    </span>
+  </a>
+);
+
 const Home = () => {
   const [filter, setFilter] = useState('all');
 
@@ -34,7 +83,8 @@ const Home = () => {
         <div style={styles.heroInner}>
           <div style={styles.eyebrow}>✦ New Collection 2026</div>
           <h1 style={styles.heroTitle}>
-            Dress to <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>Impress,</em>
+            Dress to{' '}
+            <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>Impress,</em>
             <br />Not Overspend
           </h1>
           <p style={styles.heroDesc}>
@@ -45,8 +95,6 @@ const Home = () => {
             <a href="#deals" style={styles.btnGold}>Shop Deals →</a>
             <Link to="/category/dresses" style={styles.btnGhost}>Explore Dresses</Link>
           </div>
-
-          {/* STATS */}
           <div style={styles.stats}>
             <div style={styles.stat}>
               <div style={styles.statNum}>500+</div>
@@ -90,7 +138,8 @@ const Home = () => {
       <section style={styles.section}>
         <div style={styles.sectionEyebrow}>Browse</div>
         <h2 style={styles.sectionTitle}>
-          Shop by <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>Category</em>
+          Shop by{' '}
+          <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>Category</em>
         </h2>
         <div style={styles.catGrid}>
           {categories.map(cat => (
@@ -107,10 +156,10 @@ const Home = () => {
       <section style={styles.section} id="deals">
         <div style={styles.sectionEyebrow}>Handpicked</div>
         <h2 style={styles.sectionTitle}>
-          Today's <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>Best Deals</em>
+          Today's{' '}
+          <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>Best Deals</em>
         </h2>
 
-        {/* FILTERS */}
         <div style={styles.filters}>
           {[
             { key: 'all', label: 'All Items' },
@@ -121,6 +170,8 @@ const Home = () => {
             { key: 'makeup', label: 'Makeup' },
             { key: 'bags', label: 'Bags' },
             { key: 'jewellery', label: 'Jewellery' },
+            { key: 'ethnic', label: 'Ethnic' },
+            { key: 'tops', label: 'Tops' },
           ].map(f => (
             <button
               key={f.key}
@@ -138,7 +189,6 @@ const Home = () => {
           ))}
         </div>
 
-        {/* PRODUCT GRID */}
         <div style={styles.productGrid}>
           {filtered.map(p => (
             <ProductCard key={p.id} product={p} />
@@ -159,13 +209,12 @@ const Home = () => {
             on Myntra. Min. order ₹599.
           </p>
         </div>
-        <div style={styles.promoBtns}>
-          <a href="https://www.myntra.com" target="_blank" rel="noreferrer" style={styles.btnGold}>
-            Shop Myntra →
-          </a>
-          <a href="https://www.flipkart.com" target="_blank" rel="noreferrer" style={styles.btnGhost}>
-            Shop Flipkart →
-          </a>
+
+        {/* STORE ICONS */}
+        <div style={styles.storeIcons}>
+          {stores.map(store => (
+            <StoreIcon key={store.name} store={store} size={52} />
+          ))}
         </div>
       </section>
 
@@ -188,19 +237,14 @@ const Home = () => {
             ))}
           </div>
           <div>
-            <div style={styles.footerTitle}>Shop From</div>
-            {['Myntra','Flipkart','Meesho','Ajio'].map(s => (
-              <a
-                key={s}
-                href={`https://www.${s.toLowerCase()}.com`}
-                target="_blank"
-                rel="noreferrer"
-                style={styles.footerLink}
-              >
-                {s} ↗
-              </a>
-            ))}
-          </div>
+  <div style={styles.footerTitle}>Shop From</div>
+  <a href="https://www.myntra.com" target="_blank" rel="noreferrer" style={styles.footerLink}>Myntra ↗</a>
+  <a href="https://www.flipkart.com" target="_blank" rel="noreferrer" style={styles.footerLink}>Flipkart ↗</a>
+  <a href="https://www.amazon.in/s?k=women+fashion" target="_blank" rel="noreferrer" style={styles.footerLink}>Amazon ↗</a>
+  <a href="https://www.ajio.com" target="_blank" rel="noreferrer" style={styles.footerLink}>Ajio ↗</a>
+  <a href="https://www.meesho.com" target="_blank" rel="noreferrer" style={styles.footerLink}>Meesho ↗</a>
+  <a href="https://www.nykaafashion.com" target="_blank" rel="noreferrer" style={styles.footerLink}>Nykaa ↗</a>
+</div>
         </div>
         <div style={styles.footerBottom}>
           © 2026 GlowWear · Made with 💛 for smart shoppers
@@ -216,8 +260,6 @@ const styles = {
     minHeight: '100vh',
     background: '#0a090d',
   },
-
-  // HERO
   hero: {
     minHeight: '100vh',
     display: 'flex',
@@ -325,8 +367,6 @@ const styles = {
     width: '1px', height: '40px',
     background: 'rgba(255,255,255,0.07)',
   },
-
-  // MARQUEE
   marqueeStrip: {
     background: '#c9a84c',
     padding: '0.85rem 0',
@@ -345,11 +385,7 @@ const styles = {
     textTransform: 'uppercase',
     color: '#0a090d',
   },
-  marqueeDot: {
-    color: 'rgba(10,9,13,0.4)',
-  },
-
-  // SECTIONS
+  marqueeDot: { color: 'rgba(10,9,13,0.4)' },
   section: {
     padding: '5rem 2rem',
     maxWidth: '1300px',
@@ -369,8 +405,6 @@ const styles = {
     color: '#ffffff',
     marginBottom: '2.5rem',
   },
-
-  // CATEGORIES
   catGrid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
@@ -383,7 +417,6 @@ const styles = {
     padding: '1.8rem 1rem',
     textAlign: 'center',
     textDecoration: 'none',
-    transition: 'transform 0.3s, border-color 0.3s',
     cursor: 'pointer',
   },
   catEmoji: { fontSize: '2.8rem', marginBottom: '0.8rem' },
@@ -394,8 +427,6 @@ const styles = {
     marginBottom: '0.3rem',
   },
   catSub: { fontSize: '0.72rem', color: '#8a849a' },
-
-  // FILTERS
   filters: {
     display: 'flex',
     gap: '0.6rem',
@@ -411,15 +442,11 @@ const styles = {
     transition: 'all 0.2s',
     fontFamily: "'Outfit', sans-serif",
   },
-
-  // PRODUCTS
   productGrid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))',
     gap: '1.5rem',
   },
-
-  // PROMO
   promoBand: {
     margin: '0 2rem 4rem',
     background: 'linear-gradient(135deg, #1a0e20, #0e1020)',
@@ -451,13 +478,12 @@ const styles = {
     fontSize: '0.9rem',
     lineHeight: 1.7,
   },
-  promoBtns: {
+  storeIcons: {
     display: 'flex',
     gap: '1rem',
     flexWrap: 'wrap',
+    alignItems: 'center',
   },
-
-  // FOOTER
   footer: {
     background: '#111018',
     borderTop: '1px solid rgba(255,255,255,0.07)',
