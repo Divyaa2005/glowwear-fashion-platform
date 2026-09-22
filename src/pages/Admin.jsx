@@ -1,39 +1,45 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-// ─── ADMIN EMAIL — change this to your email ───
-const ADMIN_EMAIL = 'admin@glowwear.com';
+import api from '../services/api';
+import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 
 const Admin = () => {
   const { user } = useAuth();
-  const [form, setForm] = useState({
-    id: Date.now(),
-    emoji: '👗',
-    name: '',
-    type: '',
-    category: 'dresses',
-    price: '',
-    oldPrice: '',
-    source: 'Myntra',
-    link: '',
-    image: '',
-    stars: 4,
-    reviews: 100,
-  });
-  const [saved, setSaved] = useState(false);
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('admin_items') || '[]')
-  );
+  const toast = useToast();
 
-  if (!user || user.email !== ADMIN_EMAIL) {
+  const [analytics, setAnalytics] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('overview'); // overview | users | platforms
+
+  useEffect(() => {
+    if (user && user.role === 'ADMIN') {
+      Promise.all([
+        api.getAdminAnalytics(),
+        api.getAdminUsers()
+      ])
+        .then(([analyticsRes, usersRes]) => {
+          if (analyticsRes.success) setAnalytics(analyticsRes.analytics);
+          if (usersRes.success) setUsers(usersRes.users);
+        })
+        .catch(err => {
+          toast.error(err.message || 'Failed to fetch admin data.');
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, [user, toast]);
+
+  if (!user || user.role !== 'ADMIN') {
     return (
       <div style={styles.page}>
-        <div style={styles.center}>
+        <div style={styles.centerBox}>
           <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🔒</div>
           <h2 style={styles.title}>Admin Access Only</h2>
           <p style={{ color: '#8a849a', marginBottom: '2rem' }}>
-            Login with admin@glowwear.com to access this page
+            You need an administrator account to access this management dashboard.
           </p>
           <Link to="/login" style={styles.btnGold}>Login as Admin →</Link>
         </div>
@@ -41,178 +47,192 @@ const Admin = () => {
     );
   }
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSave = (e) => {
-    e.preventDefault();
-    const newItem = {
-      ...form,
-      id: Date.now(),
-      price: parseInt(form.price),
-      oldPrice: parseInt(form.oldPrice),
-      stars: parseInt(form.stars),
-      reviews: parseInt(form.reviews),
-    };
-    const updated = [...items, newItem];
-    setItems(updated);
-    localStorage.setItem('admin_items', JSON.stringify(updated));
-    setSaved(true);
-    setForm({ ...form, name: '', type: '', price: '', oldPrice: '', link: '', image: '' });
-    setTimeout(() => setSaved(false), 3000);
-  };
-
-  const handleDelete = (id) => {
-    const updated = items.filter(i => i.id !== id);
-    setItems(updated);
-    localStorage.setItem('admin_items', JSON.stringify(updated));
-  };
+  if (loading) {
+    return (
+      <div style={styles.page}>
+        <div style={styles.centerBox}>
+          <div style={{ fontSize: '2.5rem', animation: 'spin 1s infinite linear' }}>✦</div>
+          <p style={{ color: '#8a849a', marginTop: '1rem' }}>Loading admin analytics...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={styles.page}>
-      <div style={styles.content}>
-
+      <div style={styles.container}>
+        
+        {/* Header */}
         <div style={styles.header}>
-          <div style={styles.eyebrow}>Admin Panel</div>
-          <h1 style={styles.title}>
-            Add <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>New Items</em>
-          </h1>
-          <p style={{ color: '#8a849a', fontSize: '0.88rem' }}>
-            Fill the form below — copy the output code and paste into products.js
-          </p>
+          <div>
+            <div style={styles.eyebrow}>Platform Administration</div>
+            <h1 style={styles.title}>
+              GlowWear <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>Command Center</em>
+            </h1>
+            <p style={styles.sub}>
+              Monitor active users, catalog ingestion, supported platforms, and overall platform growth.
+            </p>
+          </div>
+
+          {/* Navigation Tabs */}
+          <div style={styles.tabGroup}>
+            {['overview', 'users', 'platforms'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                style={{
+                  ...styles.tabBtn,
+                  background: activeTab === tab ? '#c9a84c' : 'transparent',
+                  color: activeTab === tab ? '#0a090d' : '#8a849a',
+                  borderColor: activeTab === tab ? '#c9a84c' : 'rgba(255,255,255,0.1)'
+                }}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {saved && (
-          <div style={styles.success}>
-            ✅ Item saved! Copy the code below and paste into products.js
+        {/* ── OVERVIEW TAB ── */}
+        {activeTab === 'overview' && analytics && (
+          <div>
+            {/* KPI Cards */}
+            <div style={styles.kpiGrid}>
+              <div style={styles.kpiCard}>
+                <div style={styles.kpiVal}>{analytics.totalUsers}</div>
+                <div style={styles.kpiLbl}>Total Registered Users</div>
+              </div>
+              <div style={styles.kpiCard}>
+                <div style={styles.kpiVal}>{analytics.totalProducts}</div>
+                <div style={styles.kpiLbl}>Total Saved Products</div>
+              </div>
+              <div style={styles.kpiCard}>
+                <div style={styles.kpiVal}>{analytics.totalCollections}</div>
+                <div style={styles.kpiLbl}>Total Collections</div>
+              </div>
+              <div style={styles.kpiCard}>
+                <div style={{ ...styles.kpiVal, color: '#5bb580' }}>{analytics.publicCollections}</div>
+                <div style={styles.kpiLbl}>Public Shared Collections</div>
+              </div>
+            </div>
+
+            {/* Platform & Category Distribution */}
+            <div style={styles.distributionGrid}>
+              
+              {/* Platform Breakdown */}
+              <div style={styles.distCard}>
+                <h3 style={styles.distTitle}>Products by Shopping Platform</h3>
+                <div style={styles.distList}>
+                  {Object.entries(analytics.platformCounts || {}).map(([platform, count]) => {
+                    const pct = analytics.totalProducts > 0
+                      ? Math.round((count / analytics.totalProducts) * 100)
+                      : 0;
+
+                    return (
+                      <div key={platform} style={styles.distRow}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                          <span style={{ fontWeight: 600, color: '#ffffff', fontSize: '0.85rem' }}>{platform}</span>
+                          <span style={{ color: '#c9a84c', fontSize: '0.82rem' }}>{count} ({pct}%)</span>
+                        </div>
+                        <div style={styles.barBg}>
+                          <div style={{ ...styles.barFill, width: `${pct}%`, backgroundColor: '#c9a84c' }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Category Breakdown */}
+              <div style={styles.distCard}>
+                <h3 style={styles.distTitle}>Products by Category</h3>
+                <div style={styles.distList}>
+                  {Object.entries(analytics.categoryCounts || {}).map(([category, count]) => {
+                    const pct = analytics.totalProducts > 0
+                      ? Math.round((count / analytics.totalProducts) * 100)
+                      : 0;
+
+                    return (
+                      <div key={category} style={styles.distRow}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                          <span style={{ fontWeight: 600, color: '#ffffff', fontSize: '0.85rem', textTransform: 'capitalize' }}>
+                            {category}
+                          </span>
+                          <span style={{ color: '#d4607a', fontSize: '0.82rem' }}>{count} ({pct}%)</span>
+                        </div>
+                        <div style={styles.barBg}>
+                          <div style={{ ...styles.barFill, width: `${pct}%`, backgroundColor: '#d4607a' }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+            </div>
           </div>
         )}
 
-        {/* FORM */}
-        <form onSubmit={handleSave} style={styles.form}>
-          <div style={styles.formGrid}>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Item Name *</label>
-              <input name="name" value={form.name} onChange={handleChange}
-                placeholder="e.g. Floral Midi Dress" style={styles.input} required />
+        {/* ── USERS TAB ── */}
+        {activeTab === 'users' && (
+          <div style={styles.tableCard}>
+            <h3 style={styles.distTitle}>All Registered Accounts ({users.length})</h3>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={styles.table}>
+                <thead>
+                  <tr style={styles.thRow}>
+                    <th style={styles.th}>User</th>
+                    <th style={styles.th}>Email</th>
+                    <th style={styles.th}>Role</th>
+                    <th style={styles.th}>Saved Items</th>
+                    <th style={styles.th}>Collections</th>
+                    <th style={styles.th}>Joined</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map(u => (
+                    <tr key={u.id} style={styles.tr}>
+                      <td style={styles.td}>
+                        <strong>{u.name}</strong>
+                      </td>
+                      <td style={styles.td}>{u.email}</td>
+                      <td style={styles.td}>
+                        <span style={{
+                          ...styles.rolePill,
+                          background: u.role === 'ADMIN' ? 'rgba(201,168,76,0.2)' : 'rgba(255,255,255,0.05)',
+                          color: u.role === 'ADMIN' ? '#c9a84c' : '#8a849a'
+                        }}>
+                          {u.role}
+                        </span>
+                      </td>
+                      <td style={styles.td}>{u.productsCount || 0}</td>
+                      <td style={styles.td}>{u.collectionsCount || 0}</td>
+                      <td style={styles.td}>
+                        {new Date(u.createdAt).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Type *</label>
-              <input name="type" value={form.type} onChange={handleChange}
-                placeholder="e.g. Casual Wear" style={styles.input} required />
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Category *</label>
-              <select name="category" value={form.category} onChange={handleChange} style={styles.input}>
-                {['dresses','shoes','makeup','bags','jewellery','ethnic','tops'].map(c => (
-                  <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
-                ))}
-              </select>
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Emoji</label>
-              <input name="emoji" value={form.emoji} onChange={handleChange}
-                placeholder="👗" style={styles.input} />
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Sale Price (₹) *</label>
-              <input name="price" value={form.price} onChange={handleChange}
-                placeholder="449" style={styles.input} type="number" required />
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Original Price (₹) *</label>
-              <input name="oldPrice" value={form.oldPrice} onChange={handleChange}
-                placeholder="999" style={styles.input} type="number" required />
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Source</label>
-              <select name="source" value={form.source} onChange={handleChange} style={styles.input}>
-                {['Myntra','Flipkart','Meesho','Ajio'].map(s => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Stars (1-5)</label>
-              <select name="stars" value={form.stars} onChange={handleChange} style={styles.input}>
-                {[1,2,3,4,5].map(n => <option key={n} value={n}>{n} ★</option>)}
-              </select>
-            </div>
-
-            <div style={{ ...styles.field, gridColumn: '1 / -1' }}>
-              <label style={styles.label}>Product Link (Myntra/Flipkart URL) *</label>
-              <input name="link" value={form.link} onChange={handleChange}
-                placeholder="https://www.myntra.com/..." style={styles.input} required />
-            </div>
-
-            <div style={{ ...styles.field, gridColumn: '1 / -1' }}>
-              <label style={styles.label}>Image URL (optional — leave empty for emoji)</label>
-              <input name="image" value={form.image} onChange={handleChange}
-                placeholder="https://..." style={styles.input} />
-            </div>
-
           </div>
+        )}
 
-          <button type="submit" style={styles.btnGold}>
-            + Save Item
-          </button>
-        </form>
-
-        {/* SAVED ITEMS */}
-        {items.length > 0 && (
-          <div style={{ marginTop: '4rem' }}>
-            <h2 style={{ ...styles.title, fontSize: '1.5rem', marginBottom: '0.5rem' }}>
-              Saved Items ({items.length})
-            </h2>
-            <p style={{ color: '#8a849a', fontSize: '0.82rem', marginBottom: '1.5rem' }}>
-              Copy this code → paste into products.js ke andar (last item ke baad)
-            </p>
-
-            {/* CODE OUTPUT */}
-            <div style={styles.codeBox}>
-              {items.map(item => (
-                <pre key={item.id} style={styles.code}>
-{`  {
-    id: ${item.id},
-    emoji: '${item.emoji}',
-    name: '${item.name}',
-    type: '${item.type}',
-    category: '${item.category}',
-    price: ${item.price},
-    oldPrice: ${item.oldPrice},
-    source: '${item.source}',
-    link: '${item.link}',
-    image: '${item.image}',
-    stars: ${item.stars},
-    reviews: ${item.reviews},
-  },`}
-                </pre>
-              ))}
-            </div>
-
-            {/* ITEM LIST */}
-            <div style={styles.itemList}>
-              {items.map(item => (
-                <div key={item.id} style={styles.itemRow}>
-                  <span style={{ fontSize: '1.5rem' }}>{item.emoji}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem' }}>{item.name}</div>
-                    <div style={{ color: '#8a849a', fontSize: '0.75rem' }}>
-                      {item.category} · ₹{item.price} · {item.source}
-                    </div>
+        {/* ── PLATFORMS TAB ── */}
+        {activeTab === 'platforms' && (
+          <div style={styles.tableCard}>
+            <h3 style={styles.distTitle}>Supported Shopping Platforms</h3>
+            <div style={styles.platformGrid}>
+              {(analytics?.platforms || []).map(p => (
+                <div key={p.id} style={styles.platformCard}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.8rem' }}>
+                    <div style={{ width: '14px', height: '14px', borderRadius: '50%', backgroundColor: p.color || '#c9a84c' }} />
+                    <h4 style={{ color: '#ffffff', fontSize: '1.1rem' }}>{p.name}</h4>
                   </div>
-                  <button onClick={() => handleDelete(item.id)} style={styles.deleteBtn}>
-                    🗑 Delete
-                  </button>
+                  <div style={{ fontSize: '0.8rem', color: '#8a849a' }}>Domain: {p.domain || 'Any standard store URL'}</div>
+                  <div style={{ marginTop: '0.8rem', fontSize: '0.75rem', color: '#5bb580', fontWeight: 600 }}>
+                    ✓ Auto-detection & extraction enabled
+                  </div>
                 </div>
               ))}
             </div>
@@ -228,131 +248,182 @@ const styles = {
   page: {
     minHeight: '100vh',
     background: '#0a090d',
-    paddingTop: '68px',
+    padding: '2.5rem 1.5rem 5rem'
   },
-  content: {
-    maxWidth: '900px',
-    margin: '0 auto',
-    padding: '4rem 2rem',
+  container: {
+    maxWidth: '1360px',
+    margin: '0 auto'
   },
-  center: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '80vh',
+  centerBox: {
     textAlign: 'center',
+    padding: '8rem 2rem',
+    maxWidth: '480px',
+    margin: '0 auto'
   },
-  header: { marginBottom: '2.5rem' },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    gap: '1.5rem',
+    marginBottom: '2.5rem',
+    flexWrap: 'wrap'
+  },
   eyebrow: {
-    fontSize: '0.7rem',
-    letterSpacing: '3px',
+    fontSize: '0.72rem',
+    letterSpacing: '2.5px',
     textTransform: 'uppercase',
     color: '#c9a84c',
-    marginBottom: '0.5rem',
+    marginBottom: '0.4rem',
+    fontWeight: 600
   },
   title: {
     fontFamily: "'Cormorant Garamond', serif",
-    fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+    fontSize: 'clamp(2rem, 4vw, 3rem)',
     fontWeight: 300,
     color: '#ffffff',
-    marginBottom: '0.4rem',
+    marginBottom: '0.3rem'
   },
-  success: {
-    background: 'rgba(91,181,128,0.15)',
-    border: '1px solid rgba(91,181,128,0.4)',
-    color: '#5bb580',
-    padding: '1rem',
-    borderRadius: '12px',
-    marginBottom: '2rem',
-    textAlign: 'center',
-    fontSize: '0.88rem',
-  },
-  form: {
-    background: '#1e1b28',
-    border: '1px solid rgba(255,255,255,0.07)',
-    borderRadius: '20px',
-    padding: '2rem',
-  },
-  formGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '1.2rem',
-    marginBottom: '1.5rem',
-  },
-  field: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.4rem',
-  },
-  label: {
-    fontSize: '0.72rem',
+  sub: {
     color: '#8a849a',
-    letterSpacing: '0.5px',
-    textTransform: 'uppercase',
-    fontWeight: 500,
+    fontSize: '0.92rem'
   },
-  input: {
-    background: '#18161f',
-    border: '1px solid rgba(255,255,255,0.1)',
-    borderRadius: '10px',
-    padding: '0.75rem 1rem',
-    color: '#ffffff',
-    fontSize: '0.88rem',
-    outline: 'none',
-    fontFamily: "'Outfit', sans-serif",
+  tabGroup: {
+    display: 'flex',
+    gap: '0.5rem',
+    background: '#14121a',
+    padding: '4px',
+    borderRadius: '50px',
+    border: '1px solid rgba(255,255,255,0.08)'
+  },
+  tabBtn: {
+    border: '1px solid transparent',
+    padding: '0.5rem 1.2rem',
+    borderRadius: '50px',
+    fontSize: '0.82rem',
+    fontWeight: 600,
+    cursor: 'pointer',
+    transition: 'all 0.2s'
   },
   btnGold: {
     background: 'linear-gradient(135deg, #c9a84c, #e8cb80)',
     color: '#0a090d',
-    border: 'none',
-    padding: '0.9rem 2.5rem',
-    borderRadius: '12px',
-    fontSize: '0.92rem',
+    padding: '0.85rem 1.8rem',
+    borderRadius: '50px',
     fontWeight: 700,
-    cursor: 'pointer',
+    fontSize: '0.88rem',
     textDecoration: 'none',
-    display: 'inline-block',
+    display: 'inline-block'
   },
-  codeBox: {
-    background: '#111018',
+  kpiGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gap: '1.2rem',
+    marginBottom: '2rem'
+  },
+  kpiCard: {
+    background: '#14121a',
     border: '1px solid rgba(255,255,255,0.07)',
-    borderRadius: '12px',
-    padding: '1.5rem',
-    marginBottom: '2rem',
-    overflowX: 'auto',
+    borderRadius: '20px',
+    padding: '1.8rem'
   },
-  code: {
+  kpiVal: {
+    fontFamily: "'Cormorant Garamond', serif",
+    fontSize: '2.5rem',
+    fontWeight: 600,
     color: '#c9a84c',
-    fontSize: '0.78rem',
-    lineHeight: 1.6,
-    fontFamily: 'monospace',
-    whiteSpace: 'pre',
+    lineHeight: 1
   },
-  itemList: {
+  kpiLbl: {
+    fontSize: '0.75rem',
+    color: '#8a849a',
+    letterSpacing: '0.8px',
+    textTransform: 'uppercase',
+    marginTop: '0.5rem'
+  },
+  distributionGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+    gap: '1.5rem'
+  },
+  distCard: {
+    background: '#14121a',
+    border: '1px solid rgba(255,255,255,0.07)',
+    borderRadius: '20px',
+    padding: '2rem'
+  },
+  distTitle: {
+    fontSize: '1.1rem',
+    fontWeight: 600,
+    color: '#ffffff',
+    marginBottom: '1.5rem'
+  },
+  distList: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.8rem',
+    gap: '1rem'
   },
-  itemRow: {
+  distRow: {
     display: 'flex',
-    alignItems: 'center',
-    gap: '1rem',
-    background: '#1e1b28',
+    flexDirection: 'column'
+  },
+  barBg: {
+    height: '6px',
+    background: 'rgba(255,255,255,0.06)',
+    borderRadius: '10px',
+    overflow: 'hidden'
+  },
+  barFill: {
+    height: '100%',
+    borderRadius: '10px'
+  },
+  tableCard: {
+    background: '#14121a',
     border: '1px solid rgba(255,255,255,0.07)',
-    borderRadius: '12px',
-    padding: '1rem 1.2rem',
+    borderRadius: '20px',
+    padding: '2rem'
   },
-  deleteBtn: {
-    background: 'rgba(212,96,122,0.1)',
-    border: '1px solid rgba(212,96,122,0.3)',
-    color: '#d4607a',
-    padding: '0.4rem 0.9rem',
-    borderRadius: '8px',
-    fontSize: '0.78rem',
-    cursor: 'pointer',
-    fontFamily: "'Outfit', sans-serif",
+  table: {
+    width: '100%',
+    borderCollapse: 'collapse',
+    textAlign: 'left'
   },
+  thRow: {
+    borderBottom: '1px solid rgba(255,255,255,0.08)'
+  },
+  th: {
+    padding: '0.8rem 1rem',
+    fontSize: '0.72rem',
+    color: '#8a849a',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontWeight: 600
+  },
+  tr: {
+    borderBottom: '1px solid rgba(255,255,255,0.04)'
+  },
+  td: {
+    padding: '1rem',
+    fontSize: '0.88rem',
+    color: '#ffffff'
+  },
+  rolePill: {
+    fontSize: '0.72rem',
+    padding: '0.2rem 0.6rem',
+    borderRadius: '50px',
+    fontWeight: 700
+  },
+  platformGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+    gap: '1.2rem',
+    marginTop: '1rem'
+  },
+  platformCard: {
+    background: '#18161f',
+    border: '1px solid rgba(255,255,255,0.08)',
+    borderRadius: '16px',
+    padding: '1.5rem'
+  }
 };
 
 export default Admin;

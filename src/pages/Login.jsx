@@ -1,26 +1,39 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const toast = useToast();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const searchParams = new URLSearchParams(location.search);
+  const redirectParam = searchParams.get('redirect');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
-      login(email, password);
-      navigate('/');
+      await login(email, password);
+      toast.success('Welcome back to GlowWear! ✨');
+      if (redirectParam === 'save') {
+        navigate('/dashboard?openSave=true');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Invalid email or password.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -31,10 +44,10 @@ const Login = () => {
         <div style={styles.logo}>
           GlowWear <span style={{ color: '#c9a84c' }}>✦</span>
         </div>
-        <div style={styles.subtitle}>Welcome back! Login to your account</div>
+        <div style={styles.subtitle}>Sign in to your shopping universe</div>
 
         {/* ERROR */}
-        {error && <div style={styles.error}>{error}</div>}
+        {error && <div style={styles.error}>⚠ {error}</div>}
 
         {/* FORM */}
         <form onSubmit={handleSubmit} style={styles.form}>
@@ -51,7 +64,12 @@ const Login = () => {
           </div>
 
           <div style={styles.field}>
-            <label style={styles.label}>Password</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label style={styles.label}>Password</label>
+              <Link to="/forgot-password" style={{ fontSize: '0.78rem', color: '#c9a84c', textDecoration: 'none' }}>
+                Forgot Password?
+              </Link>
+            </div>
             <input
               type="password"
               placeholder="Enter your password"
@@ -63,7 +81,7 @@ const Login = () => {
           </div>
 
           <button type="submit" style={styles.btn} disabled={loading}>
-            {loading ? 'Logging in...' : 'Login →'}
+            {loading ? 'Signing in...' : 'Sign In →'}
           </button>
         </form>
 
@@ -77,13 +95,9 @@ const Login = () => {
         {/* SIGNUP LINK */}
         <div style={styles.bottom}>
           Don't have an account?{' '}
-          <Link to="/signup" style={styles.link}>Create Account →</Link>
+          <Link to="/signup" style={styles.link}>Create Free Account →</Link>
         </div>
 
-        {/* ADMIN HINT */}
-        <div style={styles.hint}>
-          Admin login: admin@glowwear.com / admin123
-        </div>
 
       </div>
     </div>
@@ -92,21 +106,21 @@ const Login = () => {
 
 const styles = {
   page: {
-    minHeight: '100vh',
-    background: '#0a090d',
+    minHeight: '85vh',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '2rem',
-    paddingTop: '6rem',
+    padding: '2rem 1.5rem',
+    background: '#0a090d'
   },
   card: {
-    background: '#1e1b28',
-    border: '1px solid rgba(255,255,255,0.07)',
+    background: '#14121a',
+    border: '1px solid rgba(255,255,255,0.08)',
     borderRadius: '24px',
     padding: '2.5rem',
     width: '100%',
     maxWidth: '420px',
+    boxShadow: '0 20px 50px rgba(0,0,0,0.6)'
   },
   logo: {
     fontFamily: "'Cormorant Garamond', serif",
@@ -114,40 +128,40 @@ const styles = {
     fontWeight: 600,
     color: '#ffffff',
     textAlign: 'center',
-    marginBottom: '0.5rem',
+    marginBottom: '0.4rem'
   },
   subtitle: {
     color: '#8a849a',
     fontSize: '0.88rem',
     textAlign: 'center',
-    marginBottom: '2rem',
+    marginBottom: '2rem'
   },
   error: {
     background: 'rgba(212,96,122,0.15)',
     border: '1px solid rgba(212,96,122,0.4)',
-    color: '#d4607a',
+    color: '#f2839b',
     padding: '0.75rem 1rem',
     borderRadius: '10px',
     fontSize: '0.85rem',
     marginBottom: '1.2rem',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '1.2rem',
+    gap: '1.2rem'
   },
   field: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.4rem',
+    gap: '0.4rem'
   },
   label: {
-    fontSize: '0.78rem',
-    color: '#8a849a',
+    fontSize: '0.72rem',
     letterSpacing: '0.5px',
     textTransform: 'uppercase',
-    fontWeight: 500,
+    color: '#8a849a',
+    fontWeight: 500
   },
   input: {
     background: '#18161f',
@@ -157,7 +171,7 @@ const styles = {
     color: '#ffffff',
     fontSize: '0.92rem',
     outline: 'none',
-    transition: 'border 0.2s',
+    fontFamily: "'Outfit', sans-serif"
   },
   btn: {
     background: 'linear-gradient(135deg, #c9a84c, #e8cb80)',
@@ -169,40 +183,45 @@ const styles = {
     fontWeight: 700,
     cursor: 'pointer',
     marginTop: '0.5rem',
-    letterSpacing: '0.5px',
+    boxShadow: '0 4px 15px rgba(201,168,76,0.25)'
   },
   divider: {
     display: 'flex',
     alignItems: 'center',
     gap: '1rem',
-    margin: '1.5rem 0',
+    margin: '1.5rem 0'
   },
   dividerLine: {
     flex: 1,
     height: '1px',
     background: 'rgba(255,255,255,0.07)',
-    display: 'block',
+    display: 'block'
   },
   dividerText: {
     color: '#8a849a',
-    fontSize: '0.8rem',
+    fontSize: '0.8rem'
   },
   bottom: {
     textAlign: 'center',
     color: '#8a849a',
-    fontSize: '0.88rem',
+    fontSize: '0.88rem'
   },
   link: {
     color: '#c9a84c',
     fontWeight: 600,
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   hint: {
-    marginTop: '1rem',
+    marginTop: '1.5rem',
+    padding: '0.8rem',
+    borderRadius: '10px',
+    background: 'rgba(255,255,255,0.03)',
+    border: '1px solid rgba(255,255,255,0.05)',
     textAlign: 'center',
-    color: 'rgba(255,255,255,0.2)',
+    color: '#8a849a',
     fontSize: '0.72rem',
-  },
+    lineHeight: 1.5
+  }
 };
 
 export default Login;
