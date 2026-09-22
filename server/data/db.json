@@ -1,0 +1,703 @@
+{
+  "users": [
+    {
+      "id": "usr_admin",
+      "name": "GlowWear Admin",
+      "email": "admin@glowwear.com",
+      "passwordHash": "$2b$10$BC9JPtoraSh5Ox7m.R8OvOXNn12vn7EbWgStd24TLIQAyfbskjUJu",
+      "role": "ADMIN",
+      "avatar": "",
+      "createdAt": "2026-09-22T11:16:40.645Z"
+    },
+    {
+      "id": "usr_divya",
+      "name": "Divya Swain",
+      "email": "divya@glowwear.com",
+      "passwordHash": "$2b$10$5fsQmljpNmIyzBs.WwvQRegAR80Qab3WTeokUz1rt/XoN8atwJQgu",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T11:16:40.646Z"
+    },
+    {
+      "id": "usr_d1389bb35c34",
+      "name": "Alice Walker",
+      "email": "alice_1790075865846@test.com",
+      "passwordHash": "$2b$10$B3BE5Y6.A.PZXHMb4Hl2HebD.8NvrAqvWgkHiL6n3hc5xflpcvr9O",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T11:17:46.401Z"
+    },
+    {
+      "id": "usr_947bc52d10b9",
+      "name": "Bob Smith",
+      "email": "bob_1790075866456@test.com",
+      "passwordHash": "$2b$10$eR3Cmbwhs31U0R2gcbF90eNh.kZ4f124EJ.nLhAu8bYAdF.bnAi52",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T11:17:46.563Z"
+    },
+    {
+      "id": "usr_4adf87a0ddde",
+      "name": "Alice Walker",
+      "email": "alice_1790076135539@test.com",
+      "passwordHash": "$2b$10$vdR5DKjYfsakOpN4fRABP.Ntz3as03boKNPA5jDq8k9kSTGIKb872",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T11:22:15.644Z"
+    },
+    {
+      "id": "usr_d7c6388c95b4",
+      "name": "Bob Smith",
+      "email": "bob_1790076135731@test.com",
+      "passwordHash": "$2b$10$hPNSWNtkQLfgKnD72mM43eK2/XhaYL/cMQ1KsCmbQawBY1wSBERQm",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T11:22:15.802Z"
+    },
+    {
+      "id": "usr_a95ec2e9ea2a",
+      "name": "Divya",
+      "email": "dibyaswain336@gmail.com",
+      "passwordHash": "$2b$10$Mp1N24q0W4uCc89jsJvA.upL68Yh6u0Q0Fejvy5TknlyB3tfukyu.",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T11:53:23.174Z",
+      "resetToken": "edba7f377e66c9a9fd13d643df8f6d80",
+      "resetTokenExpires": 1790080305540
+    },
+    {
+      "id": "usr_4920fc45fd3a",
+      "name": "Alice Walker",
+      "email": "alice_1790079069455@test.com",
+      "passwordHash": "$2b$10$w.uYYpruOFJCJmHNLm/hiez75Qp.g3NCUXrP1AqbxIviK9Tyb4L7S",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T12:11:09.559Z"
+    },
+    {
+      "id": "usr_d557de39402b",
+      "name": "Bob Smith",
+      "email": "bob_1790079069597@test.com",
+      "passwordHash": "$2b$10$OHRlfLsXJpNKw/1TxyaZsOp29zJVw8fi3dhBqnWonViVzhvdyxnO2",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T12:11:09.677Z"
+    },
+    {
+      "id": "usr_4086994d1729",
+      "name": "Alice Walker",
+      "email": "alice_1790080145526@test.com",
+      "passwordHash": "$2b$10$VHUE480v/79XJk0V3EGTeu5Iq9Xh7jA9SC/1TrWZBKo0WfjcD/nOe",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T12:29:05.630Z"
+    },
+    {
+      "id": "usr_9ccb40d5f9db",
+      "name": "Bob Smith",
+      "email": "bob_1790080145672@test.com",
+      "passwordHash": "$2b$10$JkehvE0N/hc6hHhp4OoHfu0gTsjha47ZXvYEXjf97NlWerPlFLnFK",
+      "role": "USER",
+      "avatar": "",
+      "createdAt": "2026-09-22T12:29:05.754Z"
+    }
+  ],
+  "collections": [
+    {
+      "id": "col_dresses",
+      "userId": "usr_divya",
+      "title": "Dream Dresses",
+      "description": "Chic midi, party, and casual dresses for all occasions",
+      "emoji": "👗",
+      "isPublic": true,
+      "shareId": "dream-dresses-divya",
+      "createdAt": "2026-09-22T11:16:40.646Z"
+    },
+    {
+      "id": "col_shoes",
+      "userId": "usr_divya",
+      "title": "Shoe Obsession",
+      "description": "Sneakers, strappy heels, and everyday flats",
+      "emoji": "👠",
+      "isPublic": true,
+      "shareId": "shoe-obsession-divya",
+      "createdAt": "2026-09-22T11:16:40.646Z"
+    },
+    {
+      "id": "col_wedding",
+      "userId": "usr_divya",
+      "title": "Wedding & Ethnic Inspiration",
+      "description": "Jhumkas, lehengas, and silk sarees for upcoming festivities",
+      "emoji": "✨",
+      "isPublic": false,
+      "shareId": "wedding-inspo-e3a3cc28",
+      "createdAt": "2026-09-22T11:16:40.647Z"
+    },
+    {
+      "id": "col_667c1f624f78",
+      "userId": "usr_d1389bb35c34",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-67b87308",
+      "createdAt": "2026-09-22T11:17:46.402Z"
+    },
+    {
+      "id": "col_4ff361ed6990",
+      "userId": "usr_d1389bb35c34",
+      "title": "Alice Summer Outfits",
+      "description": "Pastels & floral dresses",
+      "emoji": "👗",
+      "isPublic": true,
+      "shareId": "alice-summer-outfits-de558f",
+      "createdAt": "2026-09-22T11:17:46.424Z"
+    },
+    {
+      "id": "col_2246fa3d8393",
+      "userId": "usr_947bc52d10b9",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-cca16552",
+      "createdAt": "2026-09-22T11:17:46.563Z"
+    },
+    {
+      "id": "col_d226d27084f3",
+      "userId": "usr_4adf87a0ddde",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-f6ba8c3f",
+      "createdAt": "2026-09-22T11:22:15.644Z"
+    },
+    {
+      "id": "col_6c17a150e142",
+      "userId": "usr_4adf87a0ddde",
+      "title": "Alice Summer Outfits",
+      "description": "Pastels & floral dresses",
+      "emoji": "👗",
+      "isPublic": true,
+      "shareId": "alice-summer-outfits-409f47",
+      "createdAt": "2026-09-22T11:22:15.661Z"
+    },
+    {
+      "id": "col_732c2055bc2b",
+      "userId": "usr_d7c6388c95b4",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-dcb1fd0d",
+      "createdAt": "2026-09-22T11:22:15.802Z"
+    },
+    {
+      "id": "col_3cdd96ba9795",
+      "userId": "usr_admin",
+      "title": "Wedding collection",
+      "description": "",
+      "emoji": "👗",
+      "isPublic": true,
+      "shareId": "wedding-collection-5d4ebd",
+      "createdAt": "2026-09-22T11:43:45.532Z"
+    },
+    {
+      "id": "col_bd4980fc8579",
+      "userId": "usr_a95ec2e9ea2a",
+      "title": "Outfits",
+      "description": "",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "outfits-419a48",
+      "createdAt": "2026-09-22T11:54:45.539Z"
+    },
+    {
+      "id": "col_ab67c7b2b163",
+      "userId": "usr_4920fc45fd3a",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-146d1f51",
+      "createdAt": "2026-09-22T12:11:09.559Z"
+    },
+    {
+      "id": "col_04d7e775451e",
+      "userId": "usr_4920fc45fd3a",
+      "title": "Alice Summer Outfits",
+      "description": "Pastels & floral dresses",
+      "emoji": "👗",
+      "isPublic": true,
+      "shareId": "alice-summer-outfits-886d78",
+      "createdAt": "2026-09-22T12:11:09.575Z"
+    },
+    {
+      "id": "col_ef519d875881",
+      "userId": "usr_d557de39402b",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-80b351b2",
+      "createdAt": "2026-09-22T12:11:09.677Z"
+    },
+    {
+      "id": "col_47d725302ebb",
+      "userId": "usr_4086994d1729",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-e1549445",
+      "createdAt": "2026-09-22T12:29:05.630Z"
+    },
+    {
+      "id": "col_4e4083b3e86f",
+      "userId": "usr_4086994d1729",
+      "title": "Alice Summer Outfits",
+      "description": "Pastels & floral dresses",
+      "emoji": "👗",
+      "isPublic": true,
+      "shareId": "alice-summer-outfits-e1150c",
+      "createdAt": "2026-09-22T12:29:05.644Z"
+    },
+    {
+      "id": "col_a2b805ca6bad",
+      "userId": "usr_9ccb40d5f9db",
+      "title": "My First Collection ✨",
+      "description": "A cozy corner for your favorite finds",
+      "emoji": "🛍️",
+      "isPublic": false,
+      "shareId": "my-finds-867e7f02",
+      "createdAt": "2026-09-22T12:29:05.754Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "prd_dd049865212d",
+      "userId": "usr_4086994d1729",
+      "title": "Floral Silk Slip Dress",
+      "type": "Fashion Item",
+      "category": "dresses",
+      "price": 599,
+      "originalPrice": 2499,
+      "platform": "Myntra",
+      "url": "https://www.myntra.com/dresses/test/sample-dress-123/buy?utm_source=test",
+      "imageUrl": "",
+      "stars": 4.5,
+      "reviews": 1,
+      "collectionId": "col_4e4083b3e86f",
+      "isWishlisted": true,
+      "status": "saved",
+      "tags": [
+        "#silk",
+        "#summer",
+        "#floral"
+      ],
+      "notes": "Check size chart before ordering.",
+      "priceHistory": [
+        {
+          "price": 899,
+          "date": "2026-09-22T12:29:05.650Z"
+        },
+        {
+          "price": 599,
+          "date": "2026-09-22T12:29:05.663Z"
+        }
+      ],
+      "createdAt": "2026-09-22T12:29:05.650Z"
+    },
+    {
+      "id": "prd_38a4773ef56d",
+      "userId": "usr_4920fc45fd3a",
+      "title": "Floral Silk Slip Dress",
+      "type": "Fashion Item",
+      "category": "dresses",
+      "price": 599,
+      "originalPrice": 2499,
+      "platform": "Myntra",
+      "url": "https://www.myntra.com/dresses/test/sample-dress-123/buy?utm_source=test",
+      "imageUrl": "",
+      "stars": 4.5,
+      "reviews": 1,
+      "collectionId": "col_04d7e775451e",
+      "isWishlisted": true,
+      "status": "saved",
+      "tags": [
+        "#silk",
+        "#summer",
+        "#floral"
+      ],
+      "notes": "Check size chart before ordering.",
+      "priceHistory": [
+        {
+          "price": 899,
+          "date": "2026-09-22T12:11:09.580Z"
+        },
+        {
+          "price": 599,
+          "date": "2026-09-22T12:11:09.591Z"
+        }
+      ],
+      "createdAt": "2026-09-22T12:11:09.580Z"
+    },
+    {
+      "id": "prd_1c6975a9c508",
+      "userId": "usr_a95ec2e9ea2a",
+      "title": "FASHION BASKET Embellished Anarkali Kurta, Bottom & Dupatta Set",
+      "type": "Fashion Item",
+      "category": "ethnic",
+      "price": 965,
+      "originalPrice": 965,
+      "platform": "Flipkart",
+      "url": "https://www.flipkart.com/fashion-basket-embellished-anarkali-kurta-bottom-dupatta-set/p/itmba7a4673ddb4a?pid=SWDHQ83ATSNJG5BF&lid=LSTSWDHQ83ATSNJG5BFP7VWMB&marketplace=FLIPKART&store=clo&srno=b_1_1&otracker=browse&fm=organic&iid=653f86d8-df96-45db-bbae-8fcfeda897d3.SWDHQ83ATSNJG5BF.SEARCH&ppt=browse&ppn=browse&ssid=z9s6o4a8j40000001790078514369&ov_redirect=true",
+      "imageUrl": "https://rukminim2.flixcart.com/image/1500/1500/xif0q/salwar-kurta-dupatta/g/x/f/xxl-e7864-fashion-basket-original-imahq839mbhpuvkc.jpeg",
+      "stars": 4.5,
+      "reviews": 1,
+      "collectionId": "col_bd4980fc8579",
+      "isWishlisted": true,
+      "status": "saved",
+      "tags": [],
+      "notes": "",
+      "priceHistory": [
+        {
+          "price": 965,
+          "date": "2026-09-22T12:02:22.400Z"
+        }
+      ],
+      "createdAt": "2026-09-22T12:02:22.400Z"
+    },
+    {
+      "id": "prd_a298b93938c2",
+      "userId": "usr_admin",
+      "title": "Buy MF texo Striped Bandhani Art Silk Light Green Sarees Online @ Best Price In India",
+      "type": "Fashion Item",
+      "category": "ethnic",
+      "price": 526,
+      "originalPrice": 526,
+      "platform": "Flipkart",
+      "url": "https://www.flipkart.com/mf-texo-striped-bandhani-art-silk-saree/p/itm629ffe9bb3f9d?pid=SARHQUPS69ZGMBJZ&lid=LSTSARHQUPS69ZGMBJZOT1BS4&hl_lid=&marketplace=FLIPKART&fm=eyJ3dHAiOiJyZWNvIiwicHJwdCI6ImNscCIsIm1pZCI6ImZhY3RCYXNlZFJlY29tbWVuZGF0aW9uL3JlY2VudGx5Vmlld2VkIn0%3D&pageUID=1790077475488",
+      "imageUrl": "https://rukminim2.flixcart.com/image/1500/1500/xif0q/sari/x/c/c/free-light-green-leheriya-111-mf-texo-unstitched-original-imahqupskzkwthtw.jpeg",
+      "stars": 4.5,
+      "reviews": 1,
+      "collectionId": null,
+      "isWishlisted": true,
+      "status": "to-buy",
+      "tags": [],
+      "notes": "For me",
+      "priceHistory": [
+        {
+          "price": 526,
+          "date": "2026-09-22T11:45:17.137Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:45:17.137Z"
+    },
+    {
+      "id": "prd_931b8abda586",
+      "userId": "usr_4adf87a0ddde",
+      "title": "Floral Silk Slip Dress",
+      "type": "Fashion Item",
+      "category": "dresses",
+      "price": 599,
+      "originalPrice": 2499,
+      "platform": "Myntra",
+      "url": "https://www.myntra.com/dresses/test/sample-dress-123/buy?utm_source=test",
+      "imageUrl": "",
+      "stars": 4.5,
+      "reviews": 1,
+      "collectionId": "col_6c17a150e142",
+      "isWishlisted": true,
+      "status": "saved",
+      "tags": [
+        "#silk",
+        "#summer",
+        "#floral"
+      ],
+      "notes": "Check size chart before ordering.",
+      "priceHistory": [
+        {
+          "price": 899,
+          "date": "2026-09-22T11:22:15.669Z"
+        },
+        {
+          "price": 599,
+          "date": "2026-09-22T11:22:15.714Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:22:15.669Z"
+    },
+    {
+      "id": "prd_62050c8c359f",
+      "userId": "usr_d1389bb35c34",
+      "title": "Floral Silk Slip Dress",
+      "type": "Fashion Item",
+      "category": "dresses",
+      "price": 599,
+      "originalPrice": 2499,
+      "platform": "Myntra",
+      "url": "https://www.myntra.com/dresses/test/sample-dress-123/buy?utm_source=test",
+      "imageUrl": "",
+      "stars": 4.5,
+      "reviews": 1,
+      "collectionId": "col_4ff361ed6990",
+      "isWishlisted": true,
+      "status": "saved",
+      "tags": [
+        "#silk",
+        "#summer",
+        "#floral"
+      ],
+      "notes": "Check size chart before ordering.",
+      "priceHistory": [
+        {
+          "price": 899,
+          "date": "2026-09-22T11:17:46.431Z"
+        },
+        {
+          "price": 599,
+          "date": "2026-09-22T11:17:46.447Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:17:46.431Z"
+    },
+    {
+      "id": "prd_1",
+      "userId": "usr_divya",
+      "title": "Floral Print A-Line Midi Dress",
+      "type": "Casual Wear",
+      "category": "dresses",
+      "price": 576,
+      "originalPrice": 1999,
+      "platform": "Myntra",
+      "url": "https://www.myntra.com/dresses/rilake/rilake-floral-print-a-line-midi-dress/38654042/buy",
+      "imageUrl": "https://i.postimg.cc/nrsHTH2d/id1.png",
+      "stars": 4.1,
+      "reviews": 193,
+      "collectionId": "col_dresses",
+      "isWishlisted": true,
+      "status": "saved",
+      "tags": [
+        "#floral",
+        "#midi",
+        "#casual",
+        "#summer"
+      ],
+      "notes": "Looks perfect for weekend brunch. Check if size S fits.",
+      "priceHistory": [
+        {
+          "price": 1999,
+          "date": "2026-01-10T10:00:00.000Z"
+        },
+        {
+          "price": 799,
+          "date": "2026-02-01T10:00:00.000Z"
+        },
+        {
+          "price": 576,
+          "date": "2026-09-22T11:16:40.647Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:16:40.647Z"
+    },
+    {
+      "id": "prd_2",
+      "userId": "usr_divya",
+      "title": "Black Cut-Out Detailed Denim A-Line Dress",
+      "type": "Party Wear",
+      "category": "dresses",
+      "price": 593,
+      "originalPrice": 2199,
+      "platform": "Myntra",
+      "url": "https://www.myntra.com/dresses/sassafras/sassafras-black-cut-out-detailed-denim-a-line-dress/26219882/buy",
+      "imageUrl": "https://i.postimg.cc/k51GyhCk/id2.png",
+      "stars": 4.4,
+      "reviews": 4800,
+      "collectionId": "col_dresses",
+      "isWishlisted": true,
+      "status": "to-buy",
+      "tags": [
+        "#black",
+        "#partywear",
+        "#denim"
+      ],
+      "notes": "Wait for the next Payday sale.",
+      "priceHistory": [
+        {
+          "price": 2199,
+          "date": "2026-01-15T10:00:00.000Z"
+        },
+        {
+          "price": 593,
+          "date": "2026-09-22T11:16:40.647Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:16:40.647Z"
+    },
+    {
+      "id": "prd_3",
+      "userId": "usr_divya",
+      "title": "Blanccy Colorblack Flat Sneaker",
+      "type": "Sneakers",
+      "category": "shoes",
+      "price": 363,
+      "originalPrice": 999,
+      "platform": "Flipkart",
+      "url": "https://www.flipkart.com/blanccy-colorblack-flat-sneakers/p/itm87ed8af94d6ab",
+      "imageUrl": "https://rukminim1.flixcart.com/image/1536/1536/xif0q/shoe/g/k/r/7-033-7-blanccy-white-original-imahnu8matcpgs2x.jpeg?q=90",
+      "stars": 4,
+      "reviews": 2765,
+      "collectionId": "col_shoes",
+      "isWishlisted": true,
+      "status": "purchased",
+      "tags": [
+        "#sneakers",
+        "#white",
+        "#college",
+        "#under500"
+      ],
+      "notes": "Arrived! Fits true to size and super comfy.",
+      "priceHistory": [
+        {
+          "price": 999,
+          "date": "2026-02-10T10:00:00.000Z"
+        },
+        {
+          "price": 499,
+          "date": "2026-02-20T10:00:00.000Z"
+        },
+        {
+          "price": 363,
+          "date": "2026-09-22T11:16:40.647Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:16:40.647Z"
+    },
+    {
+      "id": "prd_4",
+      "userId": "usr_divya",
+      "title": "Multi-Strap Chunky Heeled Sandals",
+      "type": "Heels",
+      "category": "shoes",
+      "price": 374,
+      "originalPrice": 936,
+      "platform": "AJIO",
+      "url": "https://www.ajio.com/haute--spicy-multi-strap-chunky-heeled-sandals/p/441310217_white",
+      "imageUrl": "https://assets-jiocdn.ajio.com/medias/sys_master/root/20230505/hrJh/6454ee02d55b7d0c63975d0c/-473Wx593H-441310217-white-MODEL.jpg",
+      "stars": 4,
+      "reviews": 267,
+      "collectionId": "col_shoes",
+      "isWishlisted": false,
+      "status": "saved",
+      "tags": [
+        "#heels",
+        "#party",
+        "#white"
+      ],
+      "notes": "Matches the white clutch bag.",
+      "priceHistory": [
+        {
+          "price": 936,
+          "date": "2026-01-20T10:00:00.000Z"
+        },
+        {
+          "price": 374,
+          "date": "2026-09-22T11:16:40.647Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:16:40.647Z"
+    },
+    {
+      "id": "prd_5",
+      "userId": "usr_divya",
+      "title": "Oxidised Earrings Combo Pack of 4",
+      "type": "Earrings",
+      "category": "jewellery",
+      "price": 162,
+      "originalPrice": 249,
+      "platform": "Meesho",
+      "url": "https://www.meesho.com/urbanley-oxidised-earrings-combo-pack-of-4/p/6dwqt1",
+      "imageUrl": "https://images.meesho.com/images/products/386159797/gtrmj_512.avif?width=512",
+      "stars": 4.4,
+      "reviews": 18,
+      "collectionId": "col_wedding",
+      "isWishlisted": true,
+      "status": "saved",
+      "tags": [
+        "#jhumka",
+        "#oxidised",
+        "#ethnic",
+        "#budget"
+      ],
+      "notes": "Awesome gift set for friends too.",
+      "priceHistory": [
+        {
+          "price": 249,
+          "date": "2026-02-01T10:00:00.000Z"
+        },
+        {
+          "price": 162,
+          "date": "2026-09-22T11:16:40.647Z"
+        }
+      ],
+      "createdAt": "2026-09-22T11:16:40.647Z"
+    }
+  ],
+  "platforms": [
+    {
+      "id": "myntra",
+      "name": "Myntra",
+      "domain": "myntra.com",
+      "color": "#FF3F6C",
+      "active": true
+    },
+    {
+      "id": "flipkart",
+      "name": "Flipkart",
+      "domain": "flipkart.com",
+      "color": "#2874F0",
+      "active": true
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "domain": "amazon.in",
+      "color": "#FF9900",
+      "active": true
+    },
+    {
+      "id": "ajio",
+      "name": "AJIO",
+      "domain": "ajio.com",
+      "color": "#DB1F26",
+      "active": true
+    },
+    {
+      "id": "meesho",
+      "name": "Meesho",
+      "domain": "meesho.com",
+      "color": "#F43397",
+      "active": true
+    },
+    {
+      "id": "nykaa",
+      "name": "Nykaa",
+      "domain": "nykaa.com",
+      "color": "#FC2779",
+      "active": true
+    },
+    {
+      "id": "other",
+      "name": "Other Store",
+      "domain": "",
+      "color": "#c9a84c",
+      "active": true
+    }
+  ],
+  "meta": {
+    "version": "2.0.0",
+    "lastUpdated": "2026-09-22T12:29:06.800Z"
+  }
+}
